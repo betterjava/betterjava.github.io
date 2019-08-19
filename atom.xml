@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Liya&#39;blog</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://liya.wiki/"/>
+  <updated>2019-08-19T10:23:34.021Z</updated>
+  <id>https://liya.wiki/</id>
+  
+  <author>
+    <name>Liya</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>sharding-jdbc:原理与实现(二):事务</title>
+    <link href="https://liya.wiki/2019/08/19/shardingjdbc-transaction/"/>
+    <id>https://liya.wiki/2019/08/19/shardingjdbc-transaction/</id>
+    <published>2019-08-19T09:15:46.000Z</published>
+    <updated>2019-08-19T10:23:34.021Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;使用方法-代码方式&quot;&gt;&lt;a href=&quot;#使用方法-代码方式&quot; class=&quot;headerlink&quot; title=&quot;使用方法(代码方式)&quot;&gt;&lt;/a&gt;使用方法(代码方式)&lt;/h3&gt;&lt;figure class=&quot;highlight
+        
+      
+    
+    </summary>
+    
+      <category term="shardingsphere" scheme="https://liya.wiki/categories/shardingsphere/"/>
+    
+    
+      <category term="sharding-jdbc" scheme="https://liya.wiki/tags/sharding-jdbc/"/>
+    
+      <category term="shardingsphere" scheme="https://liya.wiki/tags/shardingsphere/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sharding-jdbc:原理与实现(一):主流程</title>
+    <link href="https://liya.wiki/2019/08/19/shardingjdbc-mainprocess/"/>
+    <id>https://liya.wiki/2019/08/19/shardingjdbc-mainprocess/</id>
+    <published>2019-08-19T07:39:16.000Z</published>
+    <updated>2019-08-19T10:23:18.275Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;使用方法-代码方式&quot;&gt;&lt;a href=&quot;#使用方法-代码方式&quot; class=&quot;headerlink&quot; title=&quot;使用方法(代码方式)&quot;&gt;&lt;/a&gt;使用方法(代码方式)&lt;/h3&gt;&lt;figure class=&quot;highlight
+        
+      
+    
+    </summary>
+    
+      <category term="shardingsphere" scheme="https://liya.wiki/categories/shardingsphere/"/>
+    
+    
+      <category term="sharding-jdbc" scheme="https://liya.wiki/tags/sharding-jdbc/"/>
+    
+      <category term="shardingsphere" scheme="https://liya.wiki/tags/shardingsphere/"/>
+    
+  </entry>
+  
+</feed>
