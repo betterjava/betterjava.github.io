@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Liya&#39;blog">
 <meta property="og:description" content="使用方法(代码方式)123456789101112131415161718192021222324Connection connection = null;try &amp;#123;    // 开启本地事务，TransactionType.XA xa 事务，TransactionType.BASE base 事务    TransactionTypeHolder.set(TransactionType">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-19T09:54:27.881Z">
+<meta property="og:updated_time" content="2019-08-19T09:58:54.610Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sharding-jdbc:原理与实现(二):事务">
 <meta name="twitter:description" content="使用方法(代码方式)123456789101112131415161718192021222324Connection connection = null;try &amp;#123;    // 开启本地事务，TransactionType.XA xa 事务，TransactionType.BASE base 事务    TransactionTypeHolder.set(TransactionType">
@@ -404,7 +404,7 @@
 <h2 id="本地事务"><a href="#本地事务" class="headerlink" title="本地事务"></a>本地事务</h2><ul>
 <li>每个ShardingConnection都会缓存使用过的真实Connection </li>
 <li>在connection.setAutoCommit(false)的时候，会把这条命令在所有缓存的的真实连接上执行</li>
-<li>如果需要新创建Connection，则也会在这些连接上执行setAutoCommit(false)。但是这一步不是通过显示调用而是通过反射来进行的</li>
+<li>如果需要新创建Connection，则也会在这些连接上执行setAutoCommit(false)。但是这一步不是通过显式调用而是通过反射来进行的</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 在 执行setAutommit(false)的时候，会把操作通过下面的方法缓存起来</span><br><span class="line">public final void recordMethodInvocation(final Class&lt;?&gt; targetClass, final String methodName, final Class&lt;?&gt;[] argumentTypes, final Object[] arguments) &#123;</span><br><span class="line">    jdbcMethodInvocations.add(new JdbcMethodInvocation(targetClass.getMethod(methodName, argumentTypes), arguments));</span><br><span class="line">&#125;</span><br><span class="line">   </span><br><span class="line">// 创建新连接后，会在新连接上通过反射调用 setAutommiit(false)</span><br><span class="line">public final void replayMethodsInvocation(final Object target) &#123;</span><br><span class="line">    for (JdbcMethodInvocation each : jdbcMethodInvocations) &#123;</span><br><span class="line">        each.invoke(target);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
