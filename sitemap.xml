@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://liya.wiki/2019/08/20/shardingjdbc-connectionmanager/</loc>
+    
+    <lastmod>2019-08-20T12:08:15.517Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://liya.wiki/2019/08/20/shardingjdbc-execute/</loc>
     
     <lastmod>2019-08-20T11:26:25.624Z</lastmod>

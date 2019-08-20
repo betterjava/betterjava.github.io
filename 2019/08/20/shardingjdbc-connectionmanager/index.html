@@ -84,17 +84,17 @@
 <meta name="description" content="先上类图">
 <meta name="keywords" content="shardingsphere,sharding-jdbc">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sharding-jdbc:原理与实现(四):sql执行引擎">
-<meta property="og:url" content="https://liya.wiki/2019/08/20/shardingjdbc-execute/index.html">
+<meta property="og:title" content="sharding-jdbc:原理与实现(五):连接管理">
+<meta property="og:url" content="https://liya.wiki/2019/08/20/shardingjdbc-connectionmanager/index.html">
 <meta property="og:site_name" content="Liya&#39;blog">
 <meta property="og:description" content="先上类图">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://liya.wiki/images/shardingjdbc-execute.png">
-<meta property="og:updated_time" content="2019-08-20T11:26:25.624Z">
+<meta property="og:image" content="https://liya.wiki/images/shardingjdbc-connection.png">
+<meta property="og:updated_time" content="2019-08-20T12:08:15.517Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sharding-jdbc:原理与实现(四):sql执行引擎">
+<meta name="twitter:title" content="sharding-jdbc:原理与实现(五):连接管理">
 <meta name="twitter:description" content="先上类图">
-<meta name="twitter:image" content="https://liya.wiki/images/shardingjdbc-execute.png">
+<meta name="twitter:image" content="https://liya.wiki/images/shardingjdbc-connection.png">
 
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="https://liya.wiki/2019/08/20/shardingjdbc-execute/">
+  <link rel="canonical" href="https://liya.wiki/2019/08/20/shardingjdbc-connectionmanager/">
 
 
 
 
 
-  <title>sharding-jdbc:原理与实现(四):sql执行引擎 | Liya'blog</title>
+  <title>sharding-jdbc:原理与实现(五):连接管理 | Liya'blog</title>
   
 
 
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liya.wiki/2019/08/20/shardingjdbc-execute/">
+    <link itemprop="mainEntityOfPage" href="https://liya.wiki/2019/08/20/shardingjdbc-connectionmanager/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Liya">
@@ -326,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">sharding-jdbc:原理与实现(四):sql执行引擎</h1>
+          <h1 class="post-title" itemprop="name headline">sharding-jdbc:原理与实现(五):连接管理</h1>
         
 
         <div class="post-meta">
@@ -338,7 +338,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-20T17:04:06+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-20T19:29:40+08:00">
                 2019-08-20
               </time>
             
@@ -403,15 +403,13 @@
       
 
       
-        <h3 id="先上类图"><a href="#先上类图" class="headerlink" title="先上类图"></a>先上类图</h3><p><img src="/images/shardingjdbc-execute.png" alt="avatar"></p>
+        <h3 id="先上类图"><a href="#先上类图" class="headerlink" title="先上类图"></a>先上类图</h3><p><img src="/images/shardingjdbc-connection.png" alt="avatar"></p>
 <a id="more"></a>
-<h3 id="ShardingExecuteGroup"><a href="#ShardingExecuteGroup" class="headerlink" title="ShardingExecuteGroup"></a>ShardingExecuteGroup</h3><p>ShardingExecuteGroup 是 ShardingExecuteEngine 中线程池执行的最小单位，每个ShardingExecuteGroup内部可能包含多个sql，这些sql都是串行执行的，且对应同一个数据源</p>
-<h3 id="ShardingGroupExecuteCallback"><a href="#ShardingGroupExecuteCallback" class="headerlink" title="ShardingGroupExecuteCallback"></a>ShardingGroupExecuteCallback</h3><p>ShardingGroupExecuteCallback是个接口，由ShardingExecuteEngine的使用这去实现，在callback内部处理的主要逻辑，就是执行ShardingExecuteGroup中inputs，并将结果给包装起来。</p>
-<h3 id="ShardingExecuteEngine"><a href="#ShardingExecuteEngine" class="headerlink" title="ShardingExecuteEngine"></a>ShardingExecuteEngine</h3><p>ShardingExecuteEngine 只负责任务的执行方式，不关心内部逻辑。核心方法只有一个</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public &lt;I, O&gt; List&lt;O&gt; groupExecute(</span><br><span class="line">    final Collection&lt;ShardingExecuteGroup&lt;I&gt;&gt; inputGroups, final ShardingGroupExecuteCallback&lt;I, O&gt; firstCallback, final ShardingGroupExecuteCallback&lt;I, O&gt; callback, final boolean serial)</span><br><span class="line">    throws SQLException &#123;</span><br><span class="line">    if (inputGroups.isEmpty()) &#123;</span><br><span class="line">        return Collections.emptyList();</span><br><span class="line">    &#125;</span><br><span class="line">    return serial ? serialExecute(inputGroups, firstCallback, callback) : parallelExecute(inputGroups, firstCallback, callback);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="概要说明"><a href="#概要说明" class="headerlink" title="概要说明"></a>概要说明</h3><p>整体上看，实现类只有EncryptConnection、MasterSlaveConnection和ShardingConnection，分别对应加密、主从、和分片三种模式下的连接。</p>
+<h3 id="AbstractConnectionAdapter"><a href="#AbstractConnectionAdapter" class="headerlink" title="AbstractConnectionAdapter"></a>AbstractConnectionAdapter</h3><p>AbstractConnectionAdapter 是MasterSlaveConnection和ShardingConnection的父类，它有个属性cachedConnections，这个map其实就缓存了这个封装的Conneciton背后真实的连接，如果我们对一个AbstractConnectionAdapter重复使用，那么这些cachedConnections也会一直被缓存，直到调用close方法。正式因为这个特性，在配置底层数据源的连接池的时候，其实配置的参数真正起作用的是AbstractConnectionAdapter背后真正的连接，因为一个AbstractConnectionAdapter执行一次查询，就可能需要很多的真实Conneciton，所以在连接池配置的是要紧急这一点。</p>
+<h3 id="EncryptConnection"><a href="#EncryptConnection" class="headerlink" title="EncryptConnection"></a>EncryptConnection</h3><p>EncryptConnection 同样缓存了一个真实Connection</p>
+<h3 id="WrapperAdapter"><a href="#WrapperAdapter" class="headerlink" title="WrapperAdapter"></a>WrapperAdapter</h3><p>WrapperAdapter 是所有Connection实现的父类，它有个jdbcMethodInvocations的map，这个map的作用是缓存这个连接上执行的方法，比如缓存setAutoCommit方法，有的时候如果缓存的真实连接不够，则会新创建真实连接，这个时候需要重新执行一些方法，这个就是通过jdbcMethodInvocations 来反射调用的</p>
 
-<p>串行就是在当前线程中执行所有的任务，并行就是采用1+n的方式：其中一个在当前线程中执行，其余的丢到线程池中去处理：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private &lt;I, O&gt; List&lt;O&gt; parallelExecute(final Collection&lt;ShardingExecuteGroup&lt;I&gt;&gt; inputGroups, final ShardingGroupExecuteCallback&lt;I, O&gt; firstCallback,</span><br><span class="line">                                       final ShardingGroupExecuteCallback&lt;I, O&gt; callback) throws SQLException &#123;</span><br><span class="line">    Iterator&lt;ShardingExecuteGroup&lt;I&gt;&gt; inputGroupsIterator = inputGroups.iterator();</span><br><span class="line">    ShardingExecuteGroup&lt;I&gt; firstInputs = inputGroupsIterator.next();</span><br><span class="line">    Collection&lt;ListenableFuture&lt;Collection&lt;O&gt;&gt;&gt; restResultFutures = asyncGroupExecute(Lists.newArrayList(inputGroupsIterator), callback);</span><br><span class="line">    return getGroupResults(syncGroupExecute(firstInputs, null == firstCallback ? callback : firstCallback), restResultFutures);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -443,8 +441,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/20/shardingjdbc-threadpool/" rel="next" title="sharding-jdbc:原理与实现(三):线程池">
-                <i class="fa fa-chevron-left"></i> sharding-jdbc:原理与实现(三):线程池
+              <a href="/2019/08/20/shardingjdbc-execute/" rel="next" title="sharding-jdbc:原理与实现(四):sql执行引擎">
+                <i class="fa fa-chevron-left"></i> sharding-jdbc:原理与实现(四):sql执行引擎
               </a>
             
           </div>
@@ -452,10 +450,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/20/shardingjdbc-connectionmanager/" rel="prev" title="sharding-jdbc:原理与实现(五):连接管理">
-                sharding-jdbc:原理与实现(五):连接管理 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -637,7 +631,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#先上类图"><span class="nav-number">1.</span> <span class="nav-text">先上类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ShardingExecuteGroup"><span class="nav-number">2.</span> <span class="nav-text">ShardingExecuteGroup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ShardingGroupExecuteCallback"><span class="nav-number">3.</span> <span class="nav-text">ShardingGroupExecuteCallback</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ShardingExecuteEngine"><span class="nav-number">4.</span> <span class="nav-text">ShardingExecuteEngine</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#先上类图"><span class="nav-number">1.</span> <span class="nav-text">先上类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#概要说明"><span class="nav-number">2.</span> <span class="nav-text">概要说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AbstractConnectionAdapter"><span class="nav-number">3.</span> <span class="nav-text">AbstractConnectionAdapter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EncryptConnection"><span class="nav-number">4.</span> <span class="nav-text">EncryptConnection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WrapperAdapter"><span class="nav-number">5.</span> <span class="nav-text">WrapperAdapter</span></a></li></ol></div>
             
 
           </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://liya.wiki/"/>
-  <updated>2019-08-20T11:26:25.624Z</updated>
+  <updated>2019-08-20T12:08:15.517Z</updated>
   <id>https://liya.wiki/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>sharding-jdbc:原理与实现(五):连接管理</title>
+    <link href="https://liya.wiki/2019/08/20/shardingjdbc-connectionmanager/"/>
+    <id>https://liya.wiki/2019/08/20/shardingjdbc-connectionmanager/</id>
+    <published>2019-08-20T11:29:40.000Z</published>
+    <updated>2019-08-20T12:08:15.517Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;先上类图&quot;&gt;&lt;a href=&quot;#先上类图&quot; class=&quot;headerlink&quot; title=&quot;先上类图&quot;&gt;&lt;/a&gt;先上类图&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/images/shardingjdbc-connection.png&quot; alt=&quot;avatar&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="shardingsphere" scheme="https://liya.wiki/categories/shardingsphere/"/>
+    
+    
+      <category term="shardingsphere" scheme="https://liya.wiki/tags/shardingsphere/"/>
+    
+      <category term="sharding-jdbc" scheme="https://liya.wiki/tags/sharding-jdbc/"/>
+    
+  </entry>
   
   <entry>
     <title>sharding-jdbc:原理与实现(四):sql执行引擎</title>

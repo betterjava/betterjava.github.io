@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[sharding-jdbc:原理与实现(五):连接管理]]></title>
+    <url>%2F2019%2F08%2F20%2Fshardingjdbc-connectionmanager%2F</url>
+    <content type="text"><![CDATA[先上类图 概要说明整体上看，实现类只有EncryptConnection、MasterSlaveConnection和ShardingConnection，分别对应加密、主从、和分片三种模式下的连接。 AbstractConnectionAdapterAbstractConnectionAdapter 是MasterSlaveConnection和ShardingConnection的父类，它有个属性cachedConnections，这个map其实就缓存了这个封装的Conneciton背后真实的连接，如果我们对一个AbstractConnectionAdapter重复使用，那么这些cachedConnections也会一直被缓存，直到调用close方法。正式因为这个特性，在配置底层数据源的连接池的时候，其实配置的参数真正起作用的是AbstractConnectionAdapter背后真正的连接，因为一个AbstractConnectionAdapter执行一次查询，就可能需要很多的真实Conneciton，所以在连接池配置的是要紧急这一点。 EncryptConnectionEncryptConnection 同样缓存了一个真实Connection WrapperAdapterWrapperAdapter 是所有Connection实现的父类，它有个jdbcMethodInvocations的map，这个map的作用是缓存这个连接上执行的方法，比如缓存setAutoCommit方法，有的时候如果缓存的真实连接不够，则会新创建真实连接，这个时候需要重新执行一些方法，这个就是通过jdbcMethodInvocations 来反射调用的]]></content>
+      <categories>
+        <category>shardingsphere</category>
+      </categories>
+      <tags>
+        <tag>shardingsphere</tag>
+        <tag>sharding-jdbc</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[sharding-jdbc:原理与实现(四):sql执行引擎]]></title>
     <url>%2F2019%2F08%2F20%2Fshardingjdbc-execute%2F</url>
     <content type="text"><![CDATA[先上类图 ShardingExecuteGroupShardingExecuteGroup 是 ShardingExecuteEngine 中线程池执行的最小单位，每个ShardingExecuteGroup内部可能包含多个sql，这些sql都是串行执行的，且对应同一个数据源 ShardingGroupExecuteCallbackShardingGroupExecuteCallback是个接口，由ShardingExecuteEngine的使用这去实现，在callback内部处理的主要逻辑，就是执行ShardingExecuteGroup中inputs，并将结果给包装起来。 ShardingExecuteEngineShardingExecuteEngine 只负责任务的执行方式，不关心内部逻辑。核心方法只有一个 12345678public &lt;I, O&gt; List&lt;O&gt; groupExecute( final Collection&lt;ShardingExecuteGroup&lt;I&gt;&gt; inputGroups, final ShardingGroupExecuteCallback&lt;I, O&gt; firstCallback, final ShardingGroupExecuteCallback&lt;I, O&gt; callback, final boolean serial) throws SQLException &#123; if (inputGroups.isEmpty()) &#123; return Collections.emptyList(); &#125; return serial ? serialExecute(inputGroups, firstCallback, callback) : parallelExecute(inputGroups, firstCallback, callback);&#125; 串行就是在当前线程中执行所有的任务，并行就是采用1+n的方式：其中一个在当前线程中执行，其余的丢到线程池中去处理： 1234567private &lt;I, O&gt; List&lt;O&gt; parallelExecute(final Collection&lt;ShardingExecuteGroup&lt;I&gt;&gt; inputGroups, final ShardingGroupExecuteCallback&lt;I, O&gt; firstCallback, final ShardingGroupExecuteCallback&lt;I, O&gt; callback) throws SQLException &#123; Iterator&lt;ShardingExecuteGroup&lt;I&gt;&gt; inputGroupsIterator = inputGroups.iterator(); ShardingExecuteGroup&lt;I&gt; firstInputs = inputGroupsIterator.next(); Collection&lt;ListenableFuture&lt;Collection&lt;O&gt;&gt;&gt; restResultFutures = asyncGroupExecute(Lists.newArrayList(inputGroupsIterator), callback); return getGroupResults(syncGroupExecute(firstInputs, null == firstCallback ? callback : firstCallback), restResultFutures);&#125;]]></content>
