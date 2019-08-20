@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://liya.wiki/"/>
-  <updated>2019-08-19T13:16:29.996Z</updated>
+  <updated>2019-08-20T07:42:08.527Z</updated>
   <id>https://liya.wiki/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>sharding-jdbc:原理与实现(三):线程池</title>
+    <link href="https://liya.wiki/2019/08/20/shardingjdbc-threadpool/"/>
+    <id>https://liya.wiki/2019/08/20/shardingjdbc-threadpool/</id>
+    <published>2019-08-20T03:42:03.000Z</published>
+    <updated>2019-08-20T07:42:08.527Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;默认线程池大小&quot;&gt;&lt;a href=&quot;#默认线程池大小&quot; class=&quot;headerlink&quot; title=&quot;默认线程池大小&quot;&gt;&lt;/a&gt;默认线程池大小&lt;/h3&gt;&lt;p&gt;sharding-jdbc 线程池，默认Executors.newCachedThreadPool()，可以通过以下参数进行配置&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;EXECUTOR_SIZE(&amp;quot;executor.size&amp;quot;, String.valueOf(0), int.class),&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="shardingsphere" scheme="https://liya.wiki/categories/shardingsphere/"/>
+    
+    
+      <category term="shardingsphere" scheme="https://liya.wiki/tags/shardingsphere/"/>
+    
+      <category term="sharding-jdbc" scheme="https://liya.wiki/tags/sharding-jdbc/"/>
+    
+  </entry>
   
   <entry>
     <title>sharding-jdbc:原理与实现(二):事务</title>
