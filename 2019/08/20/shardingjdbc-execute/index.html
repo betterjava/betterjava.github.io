@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="shardingsphere,sharding-jdbc,">
 
 
 
@@ -81,16 +81,20 @@
 
 
 
-<meta name="description" content="天生我材必有用">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Liya&#39;blog">
-<meta property="og:url" content="https://liya.wiki/archives/2019/index.html">
+<meta name="description" content="先上类图">
+<meta name="keywords" content="shardingsphere,sharding-jdbc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sharding-jdbc:原理与实现(四):sql执行引擎">
+<meta property="og:url" content="https://liya.wiki/2019/08/20/shardingjdbc-execute/index.html">
 <meta property="og:site_name" content="Liya&#39;blog">
-<meta property="og:description" content="天生我材必有用">
+<meta property="og:description" content="先上类图">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://liya.wiki/images/shardingjdbc-execute.png">
+<meta property="og:updated_time" content="2019-08-20T09:29:06.302Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Liya&#39;blog">
-<meta name="twitter:description" content="天生我材必有用">
+<meta name="twitter:title" content="sharding-jdbc:原理与实现(四):sql执行引擎">
+<meta name="twitter:description" content="先上类图">
+<meta name="twitter:image" content="https://liya.wiki/images/shardingjdbc-execute.png">
 
 
 
@@ -120,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="https://liya.wiki/archives/2019/">
+  <link rel="canonical" href="https://liya.wiki/2019/08/20/shardingjdbc-execute/">
 
 
 
 
 
-  <title>归档 | Liya'blog</title>
+  <title>sharding-jdbc:原理与实现(四):sql执行引擎 | Liya'blog</title>
   
 
 
@@ -155,7 +159,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -291,177 +295,183 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liya.wiki/2019/08/20/shardingjdbc-execute/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liya">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/4453100">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liya'blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">sharding-jdbc:原理与实现(四):sql执行引擎</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-20T17:04:06+08:00">
+                2019-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 4 篇日志。 继续努力。
-      </span>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/shardingsphere/" itemprop="url" rel="index">
+                    <span itemprop="name">shardingsphere</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/20/shardingjdbc-execute/" itemprop="url">
-              
-                <span itemprop="name">sharding-jdbc:原理与实现(四):sql执行引擎</span>
-              
-            </a>
-        
-      </h2>
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-20T17:04:06+08:00" content="2019-08-20">
-          08-20
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/20/shardingjdbc-threadpool/" itemprop="url">
-              
-                <span itemprop="name">sharding-jdbc:原理与实现(三):线程池</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-20T11:42:03+08:00" content="2019-08-20">
-          08-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/19/shardingjdbc-transaction/" itemprop="url">
-              
-                <span itemprop="name">sharding-jdbc:原理与实现(二):事务</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-19T17:15:46+08:00" content="2019-08-19">
-          08-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
+        <h3 id="先上类图"><a href="#先上类图" class="headerlink" title="先上类图"></a>先上类图</h3><p><img src="/images/shardingjdbc-execute.png" alt="avatar"></p>
+<a id="more"></a>
+<h3 id="ShardingExecuteGroup"><a href="#ShardingExecuteGroup" class="headerlink" title="ShardingExecuteGroup"></a>ShardingExecuteGroup</h3><p>ShardingExecuteGroup 是 ShardingExecuteEngine 中线程池执行的最小单位，每个ShardingExecuteGroup内部可能包含多个sql，这些sql都是串行执行的，且对应同一个数据源</p>
+<h3 id="ShardingGroupExecuteCallback"><a href="#ShardingGroupExecuteCallback" class="headerlink" title="ShardingGroupExecuteCallback"></a>ShardingGroupExecuteCallback</h3><p>ShardingGroupExecuteCallback是个接口，由ShardingExecuteEngine的使用这去实现，在callback内部处理的主要逻辑，就是执行ShardingExecuteGroup中inputs，并将结果给包装起来。</p>
+<h3 id="ShardingExecuteEngine"><a href="#ShardingExecuteEngine" class="headerlink" title="ShardingExecuteEngine"></a>ShardingExecuteEngine</h3><p>ShardingExecuteEngine 只负责任务的执行方式，不关心内部逻辑。核心方法只有一个</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public &lt;I, O&gt; List&lt;O&gt; groupExecute(</span><br><span class="line">    final Collection&lt;ShardingExecuteGroup&lt;I&gt;&gt; inputGroups, final ShardingGroupExecuteCallback&lt;I, O&gt; firstCallback, final ShardingGroupExecuteCallback&lt;I, O&gt; callback, final boolean serial)</span><br><span class="line">    throws SQLException &#123;</span><br><span class="line">    if (inputGroups.isEmpty()) &#123;</span><br><span class="line">        return Collections.emptyList();</span><br><span class="line">    &#125;</span><br><span class="line">    return serial ? serialExecute(inputGroups, firstCallback, callback) : parallelExecute(inputGroups, firstCallback, callback);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/19/shardingjdbc-mainprocess/" itemprop="url">
-              
-                <span itemprop="name">sharding-jdbc:原理与实现(一):主流程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-19T15:39:16+08:00" content="2019-08-19">
-          08-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+<p>串行就是在当前线程中执行所有的任务，并行就是采用1+n的方式：其中一个在当前线程中执行，其余啊的丢到线程池中去处理：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private &lt;I, O&gt; List&lt;O&gt; parallelExecute(final Collection&lt;ShardingExecuteGroup&lt;I&gt;&gt; inputGroups, final ShardingGroupExecuteCallback&lt;I, O&gt; firstCallback,</span><br><span class="line">                                       final ShardingGroupExecuteCallback&lt;I, O&gt; callback) throws SQLException &#123;</span><br><span class="line">    Iterator&lt;ShardingExecuteGroup&lt;I&gt;&gt; inputGroupsIterator = inputGroups.iterator();</span><br><span class="line">    ShardingExecuteGroup&lt;I&gt; firstInputs = inputGroupsIterator.next();</span><br><span class="line">    Collection&lt;ListenableFuture&lt;Collection&lt;O&gt;&gt;&gt; restResultFutures = asyncGroupExecute(Lists.newArrayList(inputGroupsIterator), callback);</span><br><span class="line">    return getGroupResults(syncGroupExecute(firstInputs, null == firstCallback ? callback : firstCallback), restResultFutures);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/shardingsphere/" rel="tag"># shardingsphere</a>
+          
+            <a href="/tags/sharding-jdbc/" rel="tag"># sharding-jdbc</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/20/shardingjdbc-threadpool/" rel="next" title="sharding-jdbc:原理与实现(三):线程池">
+                <i class="fa fa-chevron-left"></i> sharding-jdbc:原理与实现(三):线程池
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -469,6 +479,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NjEzNS8yMjY0Ng=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -489,8 +508,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -595,6 +623,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#先上类图"><span class="nav-number">1.</span> <span class="nav-text">先上类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ShardingExecuteGroup"><span class="nav-number">2.</span> <span class="nav-text">ShardingExecuteGroup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ShardingGroupExecuteCallback"><span class="nav-number">3.</span> <span class="nav-text">ShardingGroupExecuteCallback</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ShardingExecuteEngine"><span class="nav-number">4.</span> <span class="nav-text">ShardingExecuteEngine</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -748,6 +792,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -776,6 +824,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

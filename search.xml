@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[sharding-jdbc:原理与实现(四):sql执行引擎]]></title>
+    <url>%2F2019%2F08%2F20%2Fshardingjdbc-execute%2F</url>
+    <content type="text"><![CDATA[先上类图 ShardingExecuteGroupShardingExecuteGroup 是 ShardingExecuteEngine 中线程池执行的最小单位，每个ShardingExecuteGroup内部可能包含多个sql，这些sql都是串行执行的，且对应同一个数据源 ShardingGroupExecuteCallbackShardingGroupExecuteCallback是个接口，由ShardingExecuteEngine的使用这去实现，在callback内部处理的主要逻辑，就是执行ShardingExecuteGroup中inputs，并将结果给包装起来。 ShardingExecuteEngineShardingExecuteEngine 只负责任务的执行方式，不关心内部逻辑。核心方法只有一个 12345678public &lt;I, O&gt; List&lt;O&gt; groupExecute( final Collection&lt;ShardingExecuteGroup&lt;I&gt;&gt; inputGroups, final ShardingGroupExecuteCallback&lt;I, O&gt; firstCallback, final ShardingGroupExecuteCallback&lt;I, O&gt; callback, final boolean serial) throws SQLException &#123; if (inputGroups.isEmpty()) &#123; return Collections.emptyList(); &#125; return serial ? serialExecute(inputGroups, firstCallback, callback) : parallelExecute(inputGroups, firstCallback, callback);&#125; 串行就是在当前线程中执行所有的任务，并行就是采用1+n的方式：其中一个在当前线程中执行，其余啊的丢到线程池中去处理： 1234567private &lt;I, O&gt; List&lt;O&gt; parallelExecute(final Collection&lt;ShardingExecuteGroup&lt;I&gt;&gt; inputGroups, final ShardingGroupExecuteCallback&lt;I, O&gt; firstCallback, final ShardingGroupExecuteCallback&lt;I, O&gt; callback) throws SQLException &#123; Iterator&lt;ShardingExecuteGroup&lt;I&gt;&gt; inputGroupsIterator = inputGroups.iterator(); ShardingExecuteGroup&lt;I&gt; firstInputs = inputGroupsIterator.next(); Collection&lt;ListenableFuture&lt;Collection&lt;O&gt;&gt;&gt; restResultFutures = asyncGroupExecute(Lists.newArrayList(inputGroupsIterator), callback); return getGroupResults(syncGroupExecute(firstInputs, null == firstCallback ? callback : firstCallback), restResultFutures);&#125;]]></content>
+      <categories>
+        <category>shardingsphere</category>
+      </categories>
+      <tags>
+        <tag>shardingsphere</tag>
+        <tag>sharding-jdbc</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[sharding-jdbc:原理与实现(三):线程池]]></title>
     <url>%2F2019%2F08%2F20%2Fshardingjdbc-threadpool%2F</url>
     <content type="text"><![CDATA[默认线程池大小sharding-jdbc 线程池，默认Executors.newCachedThreadPool()，可以通过以下参数进行配置 1EXECUTOR_SIZE(&quot;executor.size&quot;, String.valueOf(0), int.class), ShardingExecuteGroup1234public final class ShardingExecuteGroup&lt;T&gt; &#123; // sql 的集合，一个ShardingExecuteGroup 内部的 所有sql，都在同一个数据源上执行 private final List&lt;T&gt; inputs;&#125; ShardingExecuteGroup 是线程池执行任务的最小单位，原始sql都会被拆分成 几个ShardingExecuteGroup，每个ShardingExecuteGroup 内的sql 是串行执行的，并且对应 后端同一个数据源 1+n 并行模式如果原始sql被拆成4个ShardingExecuteGroup，则其中一个ShardingExecuteGroup 会在当前线程中执行，其余的3个会扔到线程中去执行。为什么不把所有的ShardingExecuteGroup 扔到线程池中去执行呢？我的理解是，针对OLTP的应用，绝大部分的查询最终只会路由到一个节点上执行一次sql，所以，这时候在当前线程中执行可以减少线程上下文切换 事务中执行如果当前ShardingConnection位于本地事务或者XA事务中，则所有的ShardingExecuteGroup的都会串行执行，为什么不能并行执行，这一点我没有理解，有些博客给了答案，但是仍然没有想清楚：博客 它的解释如下： 1）并行效率高，整个事务的耗时更少； 2）而串行在prepare阶段失败的情况下，只需部分回滚； 最末参与者优化”（Last Participant Optimization），术语来自支付宝]]></content>
