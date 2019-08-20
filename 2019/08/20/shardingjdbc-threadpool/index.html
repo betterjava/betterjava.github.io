@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="Liya&#39;blog">
 <meta property="og:description" content="默认线程池大小sharding-jdbc 线程池，默认Executors.newCachedThreadPool()，可以通过以下参数进行配置 1EXECUTOR_SIZE(&amp;quot;executor.size&amp;quot;, String.valueOf(0), int.class),">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-20T07:42:08.527Z">
+<meta property="og:updated_time" content="2019-08-20T08:27:05.050Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sharding-jdbc:原理与实现(三):线程池">
 <meta name="twitter:description" content="默认线程池大小sharding-jdbc 线程池，默认Executors.newCachedThreadPool()，可以通过以下参数进行配置 1EXECUTOR_SIZE(&amp;quot;executor.size&amp;quot;, String.valueOf(0), int.class),">
@@ -409,6 +409,12 @@
 
 <p>ShardingExecuteGroup 是线程池执行任务的最小单位，原始sql都会被拆分成 几个ShardingExecuteGroup，<br>每个ShardingExecuteGroup 内的sql 是串行执行的，并且对应 后端同一个数据源</p>
 <h3 id="1-n-并行模式"><a href="#1-n-并行模式" class="headerlink" title="1+n 并行模式"></a>1+n 并行模式</h3><p>如果原始sql被拆成4个ShardingExecuteGroup，则其中一个ShardingExecuteGroup 会在当前线程中执行，其余的3个会扔到线程中去执行。为什么不把所有的ShardingExecuteGroup 扔到线程池中去执行呢？我的理解是，针对OLTP的应用，绝大部分的查询最终只会路由到一个节点上执行一次sql，所以，这时候在当前线程中执行可以<strong>减少线程上下文切换</strong></p>
+<h3 id="事务中执行"><a href="#事务中执行" class="headerlink" title="事务中执行"></a>事务中执行</h3><p>如果当前ShardingConnection位于本地事务或者XA事务中，则所有的ShardingExecuteGroup的都会串行执行，为什么不能并行执行，这一点我没有理解，有些博客给了答案，但是仍然没有想清楚：<a href="https://www.cnblogs.com/xybaby/p/7756163.html" target="_blank" rel="noopener">博客</a> 它的解释如下：</p>
+<ul>
+<li>1）并行效率高，整个事务的耗时更少；</li>
+<li>2）而串行在prepare阶段失败的情况下，只需部分回滚；</li>
+<li>最末参与者优化”（Last Participant Optimization），术语来自<a href="https://wenku.baid.com/view/7756b49183c4bb4cf6ecd19e.html" target="_blank" rel="noopener">支付宝</a></li>
+</ul>
 
       
     </div>
@@ -631,7 +637,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#默认线程池大小"><span class="nav-number">1.</span> <span class="nav-text">默认线程池大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ShardingExecuteGroup"><span class="nav-number">2.</span> <span class="nav-text">ShardingExecuteGroup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-n-并行模式"><span class="nav-number">3.</span> <span class="nav-text">1+n 并行模式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#默认线程池大小"><span class="nav-number">1.</span> <span class="nav-text">默认线程池大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ShardingExecuteGroup"><span class="nav-number">2.</span> <span class="nav-text">ShardingExecuteGroup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-n-并行模式"><span class="nav-number">3.</span> <span class="nav-text">1+n 并行模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务中执行"><span class="nav-number">4.</span> <span class="nav-text">事务中执行</span></a></li></ol></div>
             
 
           </div>
