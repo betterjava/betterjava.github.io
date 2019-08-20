@@ -90,7 +90,7 @@
 <meta property="og:description" content="先上类图">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://liya.wiki/images/shardingjdbc-execute.png">
-<meta property="og:updated_time" content="2019-08-20T09:29:06.302Z">
+<meta property="og:updated_time" content="2019-08-20T11:26:25.624Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sharding-jdbc:原理与实现(四):sql执行引擎">
 <meta name="twitter:description" content="先上类图">
@@ -410,7 +410,7 @@
 <h3 id="ShardingExecuteEngine"><a href="#ShardingExecuteEngine" class="headerlink" title="ShardingExecuteEngine"></a>ShardingExecuteEngine</h3><p>ShardingExecuteEngine 只负责任务的执行方式，不关心内部逻辑。核心方法只有一个</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public &lt;I, O&gt; List&lt;O&gt; groupExecute(</span><br><span class="line">    final Collection&lt;ShardingExecuteGroup&lt;I&gt;&gt; inputGroups, final ShardingGroupExecuteCallback&lt;I, O&gt; firstCallback, final ShardingGroupExecuteCallback&lt;I, O&gt; callback, final boolean serial)</span><br><span class="line">    throws SQLException &#123;</span><br><span class="line">    if (inputGroups.isEmpty()) &#123;</span><br><span class="line">        return Collections.emptyList();</span><br><span class="line">    &#125;</span><br><span class="line">    return serial ? serialExecute(inputGroups, firstCallback, callback) : parallelExecute(inputGroups, firstCallback, callback);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>串行就是在当前线程中执行所有的任务，并行就是采用1+n的方式：其中一个在当前线程中执行，其余啊的丢到线程池中去处理：</p>
+<p>串行就是在当前线程中执行所有的任务，并行就是采用1+n的方式：其中一个在当前线程中执行，其余的丢到线程池中去处理：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private &lt;I, O&gt; List&lt;O&gt; parallelExecute(final Collection&lt;ShardingExecuteGroup&lt;I&gt;&gt; inputGroups, final ShardingGroupExecuteCallback&lt;I, O&gt; firstCallback,</span><br><span class="line">                                       final ShardingGroupExecuteCallback&lt;I, O&gt; callback) throws SQLException &#123;</span><br><span class="line">    Iterator&lt;ShardingExecuteGroup&lt;I&gt;&gt; inputGroupsIterator = inputGroups.iterator();</span><br><span class="line">    ShardingExecuteGroup&lt;I&gt; firstInputs = inputGroupsIterator.next();</span><br><span class="line">    Collection&lt;ListenableFuture&lt;Collection&lt;O&gt;&gt;&gt; restResultFutures = asyncGroupExecute(Lists.newArrayList(inputGroupsIterator), callback);</span><br><span class="line">    return getGroupResults(syncGroupExecute(firstInputs, null == firstCallback ? callback : firstCallback), restResultFutures);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
