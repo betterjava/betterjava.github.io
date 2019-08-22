@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="shardingsphere,sharding-jdbc,">
 
 
 
@@ -81,16 +81,21 @@
 
 
 
-<meta name="description" content="天生我材必有用">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Liya&#39;blog">
-<meta property="og:url" content="https://liya.wiki/index.html">
+<meta name="description" content="流程图">
+<meta name="keywords" content="shardingsphere,sharding-jdbc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sharding-jdbc:原理与实现(七):sql解析">
+<meta property="og:url" content="https://liya.wiki/2019/08/22/shardingjdbc-sqlparse/index.html">
 <meta property="og:site_name" content="Liya&#39;blog">
-<meta property="og:description" content="天生我材必有用">
+<meta property="og:description" content="流程图">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://liya.wiki/images/shardingjdbc-sqlparse-process.png">
+<meta property="og:image" content="https://liya.wiki/images/shardingjdbc-sqlparse-class.png">
+<meta property="og:updated_time" content="2019-08-22T06:10:28.188Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Liya&#39;blog">
-<meta name="twitter:description" content="天生我材必有用">
+<meta name="twitter:title" content="sharding-jdbc:原理与实现(七):sql解析">
+<meta name="twitter:description" content="流程图">
+<meta name="twitter:image" content="https://liya.wiki/images/shardingjdbc-sqlparse-process.png">
 
 
 
@@ -120,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="https://liya.wiki/">
+  <link rel="canonical" href="https://liya.wiki/2019/08/22/shardingjdbc-sqlparse/">
 
 
 
 
 
-  <title>Liya'blog</title>
+  <title>sharding-jdbc:原理与实现(七):sql解析 | Liya'blog</title>
   
 
 
@@ -155,8 +160,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -291,9 +295,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -323,9 +327,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/22/shardingjdbc-sqlparse/" itemprop="url">sharding-jdbc:原理与实现(七):sql解析</a></h1>
+          <h1 class="post-title" itemprop="name headline">sharding-jdbc:原理与实现(七):sql解析</h1>
         
 
         <div class="post-meta">
@@ -379,154 +381,13 @@
           
 
           
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><p><img src="/images/shardingjdbc-sqlparse-process.png" alt="avatar"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/22/shardingjdbc-sqlparse/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liya.wiki/2019/08/20/shardingjdbc-merge/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liya">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/4453100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liya'blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/20/shardingjdbc-merge/" itemprop="url">sharding-jdbc:原理与实现(六):归并</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-20T20:16:35+08:00">
-                2019-08-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/shardingsphere/" itemprop="url" rel="index">
-                    <span itemprop="name">shardingsphere</span>
-                  </a>
-                </span>
-
-                
-                
-              
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
             </span>
           
 
           
-            
-          
-
-          
-          
-
-          
-
-          
 
           
 
@@ -543,11 +404,19 @@
       
 
       
-        
-          
-            
-          
-        
+        <h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><p><img src="/images/shardingjdbc-sqlparse-process.png" alt="avatar"></p>
+<a id="more"></a>
+<h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><p><img src="/images/shardingjdbc-sqlparse-class.png" alt="avatar"></p>
+<h3 id="SQLParseEngine"><a href="#SQLParseEngine" class="headerlink" title="SQLParseEngine"></a>SQLParseEngine</h3><p>SQLParseEngine是Sql解析的入口，它会把解析逻辑委托为SQLParseKernel，在这里只做了一个缓存的逻辑。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private final SQLParseResultCache cache = new SQLParseResultCache();</span><br></pre></td></tr></table></figure>
+
+<p>对于 PrepareStatement，SQLParseEngine会将解析过的sql缓存起来。</p>
+<h3 id="SQLParseKernel"><a href="#SQLParseKernel" class="headerlink" title="SQLParseKernel"></a>SQLParseKernel</h3><p>SQLParseKernel 同样只是把解析、抽取、填充 委托给SQLParserEngine、SQLSegmentsExtractorEngine 和 SQLStatementFillerEngine</p>
+<h3 id="解析规则注册中心-ParseRuleRegistry"><a href="#解析规则注册中心-ParseRuleRegistry" class="headerlink" title="解析规则注册中心 ParseRuleRegistry"></a>解析规则注册中心 ParseRuleRegistry</h3><p>这个类，用于将xml配置的sqlstatement规则、提取规则、填充规则加载到内存，这种通过配置的方式，避免了大量的选择分支语句</p>
+<h3 id="sql解析-SQLParserEngine"><a href="#sql解析-SQLParserEngine" class="headerlink" title="sql解析 SQLParserEngine"></a>sql解析 SQLParserEngine</h3><p>shardingjdbc的sql解析，委托给了antlr，最后解析出 ParseTree</p>
+<h3 id="segment提取-SQLSegmentsExtractorEngine"><a href="#segment提取-SQLSegmentsExtractorEngine" class="headerlink" title="segment提取 SQLSegmentsExtractorEngine"></a>segment提取 SQLSegmentsExtractorEngine</h3><p>通过ParseTree的类型，可以找到具体的抽取规则，以及抽取后的结果类型，通过sql-statement-rule-definition.xml中得到，抽取引擎，会将ParseTree中的sqlsegment抽取出来</p>
+<h3 id="statment填充-SQLStatementFillerEngine"><a href="#statment填充-SQLStatementFillerEngine" class="headerlink" title="statment填充 SQLStatementFillerEngine"></a>statment填充 SQLStatementFillerEngine</h3><p>抽取出Collection<sqlsegment>之后，每中类型的sqlSegment都有对应的填充规则，在filler-rule-definition.xml中配置，最后将所有的sql片段填充到SqlStatement中，并不需要填充所有，有写segment会被丢弃，因为用不到</sqlsegment></p>
+
       
     </div>
     
@@ -562,306 +431,38 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liya.wiki/2019/08/20/shardingjdbc-connectionmanager/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liya">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/4453100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liya'blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/20/shardingjdbc-connectionmanager/" itemprop="url">sharding-jdbc:原理与实现(五):连接管理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-20T19:29:40+08:00">
-                2019-08-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/shardingsphere/" itemprop="url" rel="index">
-                    <span itemprop="name">shardingsphere</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/shardingsphere/" rel="tag"># shardingsphere</a>
           
-
+            <a href="/tags/sharding-jdbc/" rel="tag"># sharding-jdbc</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <h3 id="先上类图"><a href="#先上类图" class="headerlink" title="先上类图"></a>先上类图</h3><p><img src="/images/shardingjdbc-connection.png" alt="avatar"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/20/shardingjdbc-connectionmanager/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/20/shardingjdbc-merge/" rel="next" title="sharding-jdbc:原理与实现(六):归并">
+                <i class="fa fa-chevron-left"></i> sharding-jdbc:原理与实现(六):归并
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liya.wiki/2019/08/20/shardingjdbc-execute/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liya">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/4453100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liya'blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/20/shardingjdbc-execute/" itemprop="url">sharding-jdbc:原理与实现(四):sql执行引擎</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-20T17:04:06+08:00">
-                2019-08-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/shardingsphere/" itemprop="url" rel="index">
-                    <span itemprop="name">shardingsphere</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h3 id="先上类图"><a href="#先上类图" class="headerlink" title="先上类图"></a>先上类图</h3><p><img src="/images/shardingjdbc-execute.png" alt="avatar"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/20/shardingjdbc-execute/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -871,456 +472,27 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liya.wiki/2019/08/20/shardingjdbc-threadpool/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liya">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/4453100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liya'blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/20/shardingjdbc-threadpool/" itemprop="url">sharding-jdbc:原理与实现(三):线程池</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-20T11:42:03+08:00">
-                2019-08-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/shardingsphere/" itemprop="url" rel="index">
-                    <span itemprop="name">shardingsphere</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="默认线程池大小"><a href="#默认线程池大小" class="headerlink" title="默认线程池大小"></a>默认线程池大小</h3><p>sharding-jdbc 线程池，默认Executors.newCachedThreadPool()，可以通过以下参数进行配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXECUTOR_SIZE(&quot;executor.size&quot;, String.valueOf(0), int.class),</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/20/shardingjdbc-threadpool/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
 
 
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liya.wiki/2019/08/19/shardingjdbc-transaction/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liya">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/4453100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liya'blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/19/shardingjdbc-transaction/" itemprop="url">sharding-jdbc:原理与实现(二):事务</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-19T17:15:46+08:00">
-                2019-08-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/shardingsphere/" itemprop="url" rel="index">
-                    <span itemprop="name">shardingsphere</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="使用方法-代码方式"><a href="#使用方法-代码方式" class="headerlink" title="使用方法(代码方式)"></a>使用方法(代码方式)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Connection connection = null;</span><br><span class="line">try &#123;</span><br><span class="line">    // 开启本地事务，TransactionType.XA xa 事务，TransactionType.BASE base 事务</span><br><span class="line">    TransactionTypeHolder.set(TransactionType.LOCAL);</span><br><span class="line">    // 通过 ShardingDataSourceFactory 创建 ShardingDatasource</span><br><span class="line">    DataSource dataSource = ShardingDataSourceFactory.createDataSource(datasourceMap, shardingRuleConfig, pros);</span><br><span class="line">    // 通过 ShardingDatasource 创建 ShardingConnection</span><br><span class="line">    connection = dataSource.getConnection();</span><br><span class="line">    connection.setAutoCommit(false);</span><br><span class="line">    // 通过 ShardingConnection 创建 ShardingStatement</span><br><span class="line">    Statement statement = connection.createStatement();</span><br><span class="line">    // 执行 并返回结果，这一步完成了 创建真实Connection 变 创建 真正Statement 并执行的结果</span><br><span class="line">    statement.executeUpdate(&quot;update user set name = &apos;cc&apos; where ex_id = 3&quot;);</span><br><span class="line">    connection.commit();</span><br><span class="line">    statement.close();</span><br><span class="line">    connection.close();</span><br><span class="line">&#125; catch (SQLException e) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        connection.rollback();</span><br><span class="line">    &#125; catch (SQLException e1) &#123;</span><br><span class="line">        e1.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/19/shardingjdbc-transaction/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-          <!--/noindex-->
-        
-      
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NjEzNS8yMjY0Ng=="></div>
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liya.wiki/2019/08/19/shardingjdbc-mainprocess/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liya">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/4453100">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liya'blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/19/shardingjdbc-mainprocess/" itemprop="url">sharding-jdbc:原理与实现(一):主流程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-19T15:39:16+08:00">
-                2019-08-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/shardingsphere/" itemprop="url" rel="index">
-                    <span itemprop="name">shardingsphere</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="使用方法-代码方式"><a href="#使用方法-代码方式" class="headerlink" title="使用方法(代码方式)"></a>使用方法(代码方式)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">private static void testBasicUse() &#123;</span><br><span class="line">    Map&lt;String, DataSource&gt; datasourceMap = new HashMap&lt;&gt;();</span><br><span class="line">    Properties pros = new Properties();</span><br><span class="line">    // 创建真正的dataSouce</span><br><span class="line">    datasourceMap.put(&quot;cookie&quot;, getDbcpDatasource());</span><br><span class="line">    // 创建 分表规则</span><br><span class="line">    ShardingRuleConfiguration shardingRuleConfig = new ShardingRuleConfiguration();</span><br><span class="line">    TableRuleConfiguration tableRuleConfiguration = new TableRuleConfiguration(&quot;user&quot;, &quot;cookie.user_$-&gt;&#123;0..9&#125;&quot;);</span><br><span class="line">    shardingRuleConfig.getTableRuleConfigs().add(tableRuleConfiguration);</span><br><span class="line">    InlineShardingStrategyConfiguration inlineShardingStrategyConfiguration = new InlineShardingStrategyConfiguration(&quot;ex_id&quot;, &quot;user_$-&gt;&#123;ex_id % 10&#125;&quot;);</span><br><span class="line">    shardingRuleConfig.setDefaultTableShardingStrategyConfig(inlineShardingStrategyConfiguration);</span><br><span class="line">    try &#123;</span><br><span class="line">        // 通过 ShardingDataSourceFactory 创建 ShardingDatasource</span><br><span class="line">        DataSource dataSource = ShardingDataSourceFactory.createDataSource(datasourceMap, shardingRuleConfig, pros);</span><br><span class="line">        // 通过 ShardingDatasource 创建 ShardingConnection</span><br><span class="line">        Connection connection = dataSource.getConnection();</span><br><span class="line">        // 通过 ShardingConnection 创建 ShardingStatement</span><br><span class="line">        Statement statement = connection.createStatement();</span><br><span class="line">        // 执行 并返回结果，这一步完成了 创建真实Connection 变 创建 真正Statement 并执行的结果</span><br><span class="line">        ResultSet rs = statement.executeQuery(&quot;select * from user&quot;);</span><br><span class="line">        while (rs.next()) &#123;</span><br><span class="line">            StringBuffer sb = new StringBuffer();</span><br><span class="line">            sb.append(rs.getLong(&quot;id&quot;));</span><br><span class="line">            sb.append(&quot;,&quot;);</span><br><span class="line">            sb.append(rs.getString(&quot;name&quot;));</span><br><span class="line">            sb.append(&quot;,&quot;);</span><br><span class="line">            sb.append(rs.getLong(&quot;ex_id&quot;));</span><br><span class="line">            System.out.println(sb.toString());</span><br><span class="line">        &#125;</span><br><span class="line">        rs.close();</span><br><span class="line">        statement.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125; catch (SQLException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/19/shardingjdbc-mainprocess/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
 
   
 
 
-          </div>
-          
-
-
-          
 
         </div>
         
@@ -1341,8 +513,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1447,6 +628,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#流程图"><span class="nav-number">1.</span> <span class="nav-text">流程图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类图"><span class="nav-number">2.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQLParseEngine"><span class="nav-number">3.</span> <span class="nav-text">SQLParseEngine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQLParseKernel"><span class="nav-number">4.</span> <span class="nav-text">SQLParseKernel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析规则注册中心-ParseRuleRegistry"><span class="nav-number">5.</span> <span class="nav-text">解析规则注册中心 ParseRuleRegistry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sql解析-SQLParserEngine"><span class="nav-number">6.</span> <span class="nav-text">sql解析 SQLParserEngine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#segment提取-SQLSegmentsExtractorEngine"><span class="nav-number">7.</span> <span class="nav-text">segment提取 SQLSegmentsExtractorEngine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#statment填充-SQLStatementFillerEngine"><span class="nav-number">8.</span> <span class="nav-text">statment填充 SQLStatementFillerEngine</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1600,6 +797,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1628,6 +829,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

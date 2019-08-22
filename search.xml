@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[sharding-jdbc:原理与实现(七):sql解析]]></title>
+    <url>%2F2019%2F08%2F22%2Fshardingjdbc-sqlparse%2F</url>
+    <content type="text"><![CDATA[流程图 类图 SQLParseEngineSQLParseEngine是Sql解析的入口，它会把解析逻辑委托为SQLParseKernel，在这里只做了一个缓存的逻辑。 1private final SQLParseResultCache cache = new SQLParseResultCache(); 对于 PrepareStatement，SQLParseEngine会将解析过的sql缓存起来。 SQLParseKernelSQLParseKernel 同样只是把解析、抽取、填充 委托给SQLParserEngine、SQLSegmentsExtractorEngine 和 SQLStatementFillerEngine 解析规则注册中心 ParseRuleRegistry这个类，用于将xml配置的sqlstatement规则、提取规则、填充规则加载到内存，这种通过配置的方式，避免了大量的选择分支语句 sql解析 SQLParserEngineshardingjdbc的sql解析，委托给了antlr，最后解析出 ParseTree segment提取 SQLSegmentsExtractorEngine通过ParseTree的类型，可以找到具体的抽取规则，以及抽取后的结果类型，通过sql-statement-rule-definition.xml中得到，抽取引擎，会将ParseTree中的sqlsegment抽取出来 statment填充 SQLStatementFillerEngine抽取出Collection之后，每中类型的sqlSegment都有对应的填充规则，在filler-rule-definition.xml中配置，最后将所有的sql片段填充到SqlStatement中，并不需要填充所有，有写segment会被丢弃，因为用不到]]></content>
+      <categories>
+        <category>shardingsphere</category>
+      </categories>
+      <tags>
+        <tag>shardingsphere</tag>
+        <tag>sharding-jdbc</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[sharding-jdbc:原理与实现(六):归并]]></title>
     <url>%2F2019%2F08%2F20%2Fshardingjdbc-merge%2F</url>
     <content type="text"></content>
@@ -16,18 +28,6 @@
     <title><![CDATA[sharding-jdbc:原理与实现(五):连接管理]]></title>
     <url>%2F2019%2F08%2F20%2Fshardingjdbc-connectionmanager%2F</url>
     <content type="text"><![CDATA[先上类图 概要说明整体上看，实现类只有EncryptConnection、MasterSlaveConnection和ShardingConnection，分别对应加密、主从、和分片三种模式下的连接。 AbstractConnectionAdapterAbstractConnectionAdapter 是MasterSlaveConnection和ShardingConnection的父类，它有个属性cachedConnections，这个map其实就缓存了这个封装的Conneciton背后真实的连接，如果我们对一个AbstractConnectionAdapter重复使用，那么这些cachedConnections也会一直被缓存，直到调用close方法。正式因为这个特性，在配置底层数据源的连接池的时候，其实配置的参数真正起作用的是AbstractConnectionAdapter背后真正的连接，因为一个AbstractConnectionAdapter执行一次查询，就可能需要很多的真实Conneciton，所以在连接池配置的是要谨记这一点。 EncryptConnectionEncryptConnection 同样缓存了一个真实Connection WrapperAdapterWrapperAdapter 是所有Connection实现的父类，它有个jdbcMethodInvocations的map，这个map的作用是缓存这个连接上执行的方法，比如缓存setAutoCommit方法，有的时候如果缓存的真实连接不够，则会新创建真实连接，这个时候需要重新执行一些方法，这个就是通过jdbcMethodInvocations 来反射调用的]]></content>
-      <categories>
-        <category>shardingsphere</category>
-      </categories>
-      <tags>
-        <tag>shardingsphere</tag>
-        <tag>sharding-jdbc</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[sharding-jdbc:原理与实现(七):sql解析]]></title>
-    <url>%2F2019%2F08%2F20%2Fshardingjdbc-sqlparse%2F</url>
-    <content type="text"><![CDATA[流程图 类图]]></content>
       <categories>
         <category>shardingsphere</category>
       </categories>
