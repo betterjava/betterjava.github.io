@@ -91,7 +91,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://liya.wiki/images/shardingjdbc-sqlparse-process.png">
 <meta property="og:image" content="https://liya.wiki/images/shardingjdbc-sqlparse-class.png">
-<meta property="og:updated_time" content="2019-08-22T06:10:28.188Z">
+<meta property="og:updated_time" content="2019-08-22T06:15:09.689Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sharding-jdbc:原理与实现(七):sql解析">
 <meta name="twitter:description" content="流程图">
@@ -416,7 +416,7 @@
 <h3 id="sql解析-SQLParserEngine"><a href="#sql解析-SQLParserEngine" class="headerlink" title="sql解析 SQLParserEngine"></a>sql解析 SQLParserEngine</h3><p>shardingjdbc的sql解析，委托给了antlr，最后解析出 ParseTree</p>
 <h3 id="segment提取-SQLSegmentsExtractorEngine"><a href="#segment提取-SQLSegmentsExtractorEngine" class="headerlink" title="segment提取 SQLSegmentsExtractorEngine"></a>segment提取 SQLSegmentsExtractorEngine</h3><p>通过ParseTree的类型，可以找到具体的抽取规则，以及抽取后的结果类型，通过sql-statement-rule-definition.xml中得到，抽取引擎，会将ParseTree中的sqlsegment抽取出来</p>
 <h3 id="statment填充-SQLStatementFillerEngine"><a href="#statment填充-SQLStatementFillerEngine" class="headerlink" title="statment填充 SQLStatementFillerEngine"></a>statment填充 SQLStatementFillerEngine</h3><p>抽取出Collection<sqlsegment>之后，每中类型的sqlSegment都有对应的填充规则，在filler-rule-definition.xml中配置，最后将所有的sql片段填充到SqlStatement中，并不需要填充所有，有写segment会被丢弃，因为用不到</sqlsegment></p>
-
+<h3 id="优化的逻辑，还没有看到，以后补充"><a href="#优化的逻辑，还没有看到，以后补充" class="headerlink" title="优化的逻辑，还没有看到，以后补充.."></a>优化的逻辑，还没有看到，以后补充..</h3>
       
     </div>
     
@@ -638,7 +638,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#流程图"><span class="nav-number">1.</span> <span class="nav-text">流程图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类图"><span class="nav-number">2.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQLParseEngine"><span class="nav-number">3.</span> <span class="nav-text">SQLParseEngine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQLParseKernel"><span class="nav-number">4.</span> <span class="nav-text">SQLParseKernel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析规则注册中心-ParseRuleRegistry"><span class="nav-number">5.</span> <span class="nav-text">解析规则注册中心 ParseRuleRegistry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sql解析-SQLParserEngine"><span class="nav-number">6.</span> <span class="nav-text">sql解析 SQLParserEngine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#segment提取-SQLSegmentsExtractorEngine"><span class="nav-number">7.</span> <span class="nav-text">segment提取 SQLSegmentsExtractorEngine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#statment填充-SQLStatementFillerEngine"><span class="nav-number">8.</span> <span class="nav-text">statment填充 SQLStatementFillerEngine</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#流程图"><span class="nav-number">1.</span> <span class="nav-text">流程图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类图"><span class="nav-number">2.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQLParseEngine"><span class="nav-number">3.</span> <span class="nav-text">SQLParseEngine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQLParseKernel"><span class="nav-number">4.</span> <span class="nav-text">SQLParseKernel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析规则注册中心-ParseRuleRegistry"><span class="nav-number">5.</span> <span class="nav-text">解析规则注册中心 ParseRuleRegistry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sql解析-SQLParserEngine"><span class="nav-number">6.</span> <span class="nav-text">sql解析 SQLParserEngine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#segment提取-SQLSegmentsExtractorEngine"><span class="nav-number">7.</span> <span class="nav-text">segment提取 SQLSegmentsExtractorEngine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#statment填充-SQLStatementFillerEngine"><span class="nav-number">8.</span> <span class="nav-text">statment填充 SQLStatementFillerEngine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化的逻辑，还没有看到，以后补充"><span class="nav-number">9.</span> <span class="nav-text">优化的逻辑，还没有看到，以后补充..</span></a></li></ol></div>
             
 
           </div>
