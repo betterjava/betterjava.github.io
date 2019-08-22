@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[sharding-jdbc:原理与实现(六):归并]]></title>
+    <url>%2F2019%2F08%2F20%2Fshardingjdbc-merge%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>shardingsphere</category>
+      </categories>
+      <tags>
+        <tag>shardingsphere</tag>
+        <tag>sharding-jdbc</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[sharding-jdbc:原理与实现(五):连接管理]]></title>
     <url>%2F2019%2F08%2F20%2Fshardingjdbc-connectionmanager%2F</url>
     <content type="text"><![CDATA[先上类图 概要说明整体上看，实现类只有EncryptConnection、MasterSlaveConnection和ShardingConnection，分别对应加密、主从、和分片三种模式下的连接。 AbstractConnectionAdapterAbstractConnectionAdapter 是MasterSlaveConnection和ShardingConnection的父类，它有个属性cachedConnections，这个map其实就缓存了这个封装的Conneciton背后真实的连接，如果我们对一个AbstractConnectionAdapter重复使用，那么这些cachedConnections也会一直被缓存，直到调用close方法。正式因为这个特性，在配置底层数据源的连接池的时候，其实配置的参数真正起作用的是AbstractConnectionAdapter背后真正的连接，因为一个AbstractConnectionAdapter执行一次查询，就可能需要很多的真实Conneciton，所以在连接池配置的是要谨记这一点。 EncryptConnectionEncryptConnection 同样缓存了一个真实Connection WrapperAdapterWrapperAdapter 是所有Connection实现的父类，它有个jdbcMethodInvocations的map，这个map的作用是缓存这个连接上执行的方法，比如缓存setAutoCommit方法，有的时候如果缓存的真实连接不够，则会新创建真实连接，这个时候需要重新执行一些方法，这个就是通过jdbcMethodInvocations 来反射调用的]]></content>
+      <categories>
+        <category>shardingsphere</category>
+      </categories>
+      <tags>
+        <tag>shardingsphere</tag>
+        <tag>sharding-jdbc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[sharding-jdbc:原理与实现(七):sql解析]]></title>
+    <url>%2F2019%2F08%2F20%2Fshardingjdbc-sqlparse%2F</url>
+    <content type="text"><![CDATA[流程图 类图]]></content>
       <categories>
         <category>shardingsphere</category>
       </categories>
