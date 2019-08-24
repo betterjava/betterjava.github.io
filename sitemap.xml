@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://liya.wiki/2019/08/24/shardingjdbc-optimize/</loc>
+    
+    <lastmod>2019-08-24T06:37:28.997Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://liya.wiki/2019/08/22/shardingjdbc-sqlparse/</loc>
     
-    <lastmod>2019-08-22T06:15:09.689Z</lastmod>
+    <lastmod>2019-08-24T06:29:54.719Z</lastmod>
     
   </url>
   

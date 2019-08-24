@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[sharding-jdbc:原理与实现(七):sql解析-优化]]></title>
+    <url>%2F2019%2F08%2F24%2Fshardingjdbc-optimize%2F</url>
+    <content type="text"><![CDATA[类图 主要说明sql解析后的结果是SQLStatement,SQLStatement 在路由时，不能满足后续的路由逻辑，需要在解析的结果上进行进一步的优化]]></content>
+      <categories>
+        <category>shardingsphere</category>
+      </categories>
+      <tags>
+        <tag>shardingsphere</tag>
+        <tag>sharding-jdbc</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[sharding-jdbc:原理与实现(七):sql解析]]></title>
     <url>%2F2019%2F08%2F22%2Fshardingjdbc-sqlparse%2F</url>
-    <content type="text"><![CDATA[流程图 类图 SQLParseEngineSQLParseEngine是Sql解析的入口，它会把解析逻辑委托为SQLParseKernel，在这里只做了一个缓存的逻辑。 1private final SQLParseResultCache cache = new SQLParseResultCache(); 对于 PrepareStatement，SQLParseEngine会将解析过的sql缓存起来。 SQLParseKernelSQLParseKernel 同样只是把解析、抽取、填充 委托给SQLParserEngine、SQLSegmentsExtractorEngine 和 SQLStatementFillerEngine 解析规则注册中心 ParseRuleRegistry这个类，用于将xml配置的sqlstatement规则、提取规则、填充规则加载到内存，这种通过配置的方式，避免了大量的选择分支语句 sql解析 SQLParserEngineshardingjdbc的sql解析，委托给了antlr，最后解析出 ParseTree segment提取 SQLSegmentsExtractorEngine通过ParseTree的类型，可以找到具体的抽取规则，以及抽取后的结果类型，通过sql-statement-rule-definition.xml中得到，抽取引擎，会将ParseTree中的sqlsegment抽取出来 statment填充 SQLStatementFillerEngine抽取出Collection之后，每中类型的sqlSegment都有对应的填充规则，在filler-rule-definition.xml中配置，最后将所有的sql片段填充到SqlStatement中，并不需要填充所有，有写segment会被丢弃，因为用不到 优化的逻辑，还没有看到，以后补充..]]></content>
+    <content type="text"><![CDATA[流程图 类图 SQLParseEngineSQLParseEngine是Sql解析的入口，它会把解析逻辑委托为SQLParseKernel，在这里只做了一个缓存的逻辑。 1private final SQLParseResultCache cache = new SQLParseResultCache(); 对于 PrepareStatement，SQLParseEngine会将解析过的sql缓存起来。 SQLParseKernelSQLParseKernel 同样只是把解析、抽取、填充 委托给SQLParserEngine、SQLSegmentsExtractorEngine 和 SQLStatementFillerEngine 解析规则注册中心 ParseRuleRegistry这个类，用于将xml配置的sqlstatement规则、提取规则、填充规则加载到内存，这种通过配置的方式，避免了大量的选择分支语句 sql解析 SQLParserEngineshardingjdbc的sql解析，委托给了antlr，最后解析出 ParseTree segment提取 SQLSegmentsExtractorEngine通过ParseTree的类型，可以找到具体的抽取规则，以及抽取后的结果类型，通过sql-statement-rule-definition.xml中得到，抽取引擎，会将ParseTree中的sqlsegment抽取出来 statment填充 SQLStatementFillerEngine抽取出Collection之后，每中类型的sqlSegment都有对应的填充规则，在filler-rule-definition.xml中配置，最后将所有的sql片段填充到SqlStatement中，并不需要填充所有，有写segment会被丢弃，因为用不到 优化在另一篇说明]]></content>
       <categories>
         <category>shardingsphere</category>
       </categories>
