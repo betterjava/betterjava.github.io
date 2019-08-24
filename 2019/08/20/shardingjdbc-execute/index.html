@@ -90,7 +90,7 @@
 <meta property="og:description" content="先上类图">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://liya.wiki/images/shardingjdbc-execute.png">
-<meta property="og:updated_time" content="2019-08-20T11:26:25.624Z">
+<meta property="og:updated_time" content="2019-08-24T10:04:02.728Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sharding-jdbc:原理与实现(四):sql执行引擎">
 <meta name="twitter:description" content="先上类图">
@@ -412,6 +412,11 @@
 
 <p>串行就是在当前线程中执行所有的任务，并行就是采用1+n的方式：其中一个在当前线程中执行，其余的丢到线程池中去处理：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private &lt;I, O&gt; List&lt;O&gt; parallelExecute(final Collection&lt;ShardingExecuteGroup&lt;I&gt;&gt; inputGroups, final ShardingGroupExecuteCallback&lt;I, O&gt; firstCallback,</span><br><span class="line">                                       final ShardingGroupExecuteCallback&lt;I, O&gt; callback) throws SQLException &#123;</span><br><span class="line">    Iterator&lt;ShardingExecuteGroup&lt;I&gt;&gt; inputGroupsIterator = inputGroups.iterator();</span><br><span class="line">    ShardingExecuteGroup&lt;I&gt; firstInputs = inputGroupsIterator.next();</span><br><span class="line">    Collection&lt;ListenableFuture&lt;Collection&lt;O&gt;&gt;&gt; restResultFutures = asyncGroupExecute(Lists.newArrayList(inputGroupsIterator), callback);</span><br><span class="line">    return getGroupResults(syncGroupExecute(firstInputs, null == firstCallback ? callback : firstCallback), restResultFutures);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="SQLExecuteTemplate"><a href="#SQLExecuteTemplate" class="headerlink" title="SQLExecuteTemplate"></a>SQLExecuteTemplate</h3><p>sql执行模版，没有什么逻辑，基本就是把逻辑委托给ShardingExecuteEngine完成；SQLExecuteCallback提供statemnt的执行方式和结果的封装。</p>
+<h3 id="SQLExecutePrepareTemplate"><a href="#SQLExecutePrepareTemplate" class="headerlink" title="SQLExecutePrepareTemplate"></a>SQLExecutePrepareTemplate</h3><p>sql执行准备模版，这里的主要工作就是，获取sql执行所需要statement和connection，封装成执行单元组，提供给SQLExecuteTemplate调用。</p>
+<h3 id="AbstractStatementExecutor-JDBCExecuteEngine"><a href="#AbstractStatementExecutor-JDBCExecuteEngine" class="headerlink" title="AbstractStatementExecutor JDBCExecuteEngine"></a>AbstractStatementExecutor JDBCExecuteEngine</h3><p>上层调用的入口。AbstractStatementExecutor提供给sharding-jdbc使用JDBCExecuteEngine提供给sharding-proxy使用</p>
+
       
     </div>
     
@@ -637,7 +642,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#先上类图"><span class="nav-number">1.</span> <span class="nav-text">先上类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ShardingExecuteGroup"><span class="nav-number">2.</span> <span class="nav-text">ShardingExecuteGroup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ShardingGroupExecuteCallback"><span class="nav-number">3.</span> <span class="nav-text">ShardingGroupExecuteCallback</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ShardingExecuteEngine"><span class="nav-number">4.</span> <span class="nav-text">ShardingExecuteEngine</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#先上类图"><span class="nav-number">1.</span> <span class="nav-text">先上类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ShardingExecuteGroup"><span class="nav-number">2.</span> <span class="nav-text">ShardingExecuteGroup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ShardingGroupExecuteCallback"><span class="nav-number">3.</span> <span class="nav-text">ShardingGroupExecuteCallback</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ShardingExecuteEngine"><span class="nav-number">4.</span> <span class="nav-text">ShardingExecuteEngine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQLExecuteTemplate"><span class="nav-number">5.</span> <span class="nav-text">SQLExecuteTemplate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQLExecutePrepareTemplate"><span class="nav-number">6.</span> <span class="nav-text">SQLExecutePrepareTemplate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AbstractStatementExecutor-JDBCExecuteEngine"><span class="nav-number">7.</span> <span class="nav-text">AbstractStatementExecutor JDBCExecuteEngine</span></a></li></ol></div>
             
 
           </div>
