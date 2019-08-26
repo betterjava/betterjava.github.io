@@ -27,7 +27,7 @@
   <entry>
     <title><![CDATA[sharding-jdbc:原理与实现(六):归并]]></title>
     <url>%2F2019%2F08%2F20%2Fshardingjdbc-merge%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[类图 MergeEngine归并引擎，根据功能不同，又分为DQLMergeEngine，DALMergeEngine，TransparentMergeEngine MergedResult归并后的结果]]></content>
       <categories>
         <category>shardingsphere</category>
       </categories>
