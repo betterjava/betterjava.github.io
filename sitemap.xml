@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://liya.wiki/about/index.html</loc>
+    
+    <lastmod>2019-10-29T08:57:37.719Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://liya.wiki/2019/08/20/shardingjdbc-merge/</loc>
     
     <lastmod>2019-08-26T06:37:44.231Z</lastmod>
@@ -54,13 +61,6 @@
     <loc>https://liya.wiki/2019/08/19/shardingjdbc-mainprocess/</loc>
     
     <lastmod>2019-08-19T13:13:22.812Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://liya.wiki/about/index.html</loc>
-    
-    <lastmod>2019-08-19T06:53:34.896Z</lastmod>
     
   </url>
   
